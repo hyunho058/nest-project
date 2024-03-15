@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Post, Put } from "@nestjs/common";
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -8,6 +8,12 @@ export class UsersController {
   @Get()
   getAll() {
     return 'all';
+  }
+
+  @Get('error')
+  getError() {
+    throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
+    return 'error';
   }
 
   @Get(':id')
